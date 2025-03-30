@@ -1,0 +1,24 @@
+name: Comment on PR
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Run tests and get results
+      run: |
+        pip install pytest
+        result=$(pytest --maxfail=1 --disable-warnings -q)
+        echo "$result" > result.log
+
+    - name: Comment on pull request
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        path: result.log
