@@ -19,13 +19,15 @@ class TaskManager:
         return new_task
 
     def update_task(self, task_id, data):
-        task = next((task for task in self.tasks if task['id'] == task_id), None)
+        task = next((task for task in self.tasks if task['id'] == task_id),
+                    None)
         if task:
             task.update(data)
         return task
 
     def delete_task(self, task_id):
-        task = next((task for task in self.tasks if task['id'] == task_id), None)
+        task = next((task for task in self.tasks if task['id'] == task_id),
+                    None)
         if task:
             self.tasks.remove(task)
             return {'result': True}
@@ -51,7 +53,8 @@ def create_task():
 @app.route('/tasks/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
     data = request.get_json()
-    return jsonify(task_manager.update_task(task_id, data) or {'error': 'Task not found'}), 200
+    return jsonify(task_manager.update_task(task_id, data) or
+                   {'error': 'Task not found'}), 200
 
 
 @app.route('/tasks/<int:task_id>', methods=['DELETE'])

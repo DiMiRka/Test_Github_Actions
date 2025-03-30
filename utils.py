@@ -5,7 +5,8 @@ def print_tasks():
     response = requests.get('http://127.0.0.1:5000/tasks')
     tasks = response.json()['tasks']
     for task in tasks:
-        print(f"ID: {task['id']}, Задача: {task['title']}, Статус: {'Сделана' if task['done'] else 'Не сделана'}")
+        print(f"ID: {task['id']}, Задача: {task['title']}, "
+              f"Статус: {'Сделана' if task['done'] else 'Не сделана'}")
 
 
 def create_task(title: str):
@@ -19,7 +20,8 @@ def create_task(title: str):
 
 
 def make_task_done(task_id: int):
-    response = requests.put(f'http://localhost:5000/tasks/{task_id}', json={'done': True})
+    response = requests.put(f'http://localhost:5000/tasks/{task_id}',
+                            json={'done': True})
 
     if response.status_code == 200:
         print('Статус задачи изменен!')
@@ -34,4 +36,3 @@ def del_task(task_id: int):
         print('Задача удалена!')
     else:
         print('Ошибка при удалении задачи.')
-

@@ -28,8 +28,10 @@ def test_get_tasks(client):
     ({'title': 'Новая задача 2'}, 201, 'Новая задача 2'),
 ])
 @patch('app.task_manager.create_task')  # Мокирование
-def test_create_task(mock_create_task, client, task_input, expected_status, expected_title):
-    mock_create_task.return_value = {'id': 3, 'title': expected_title, 'done': False}  # Определяем return_value
+def test_create_task(mock_create_task, client, task_input,
+                     expected_status, expected_title):
+    mock_create_task.return_value = {'id': 3, 'title': expected_title,
+                                     'done': False}  # Определяем return_value
 
     response = client.post(API_URL, json=task_input)
     assert response.status_code == expected_status
