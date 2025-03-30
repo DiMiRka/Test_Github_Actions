@@ -1,12 +1,12 @@
 import os
 import sys
 from unittest.mock import patch
+from app import app, task_manager
 
 import pytest
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from app import app, task_manager
 
 API_URL = 'http://localhost:5000/tasks'
 
