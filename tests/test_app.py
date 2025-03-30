@@ -1,7 +1,7 @@
 import os
 import sys
 from unittest.mock import patch
-from app import app, task_manager
+from app.app import app, task_manager
 
 import pytest
 
