@@ -28,7 +28,7 @@ def test_get_tasks(client):
     ({'title': 'New Task 1'}, 201, 'New Task 1'),
     ({'title': 'Новая задача 2'}, 201, 'Новая задача 2'),
 ])
-@patch('src.task_manager.create_task')  # Мокирование
+@patch('src.myapp.task_manager.create_task')  # Мокирование
 def test_create_task(mock_create_task, client, task_input,
                      expected_status, expected_title):
     mock_create_task.return_value = {'id': 3, 'title': expected_title,
@@ -40,7 +40,7 @@ def test_create_task(mock_create_task, client, task_input,
     mock_create_task.assert_called_once_with(expected_title)
 
 
-@patch('src.task_manager.create_task')
+@patch('src.myapp.task_manager.create_task')
 def test_create_task_invalid_input(mock_create_task, client):
     mock_create_task.side_effect = ValueError('Invalid input')
 
