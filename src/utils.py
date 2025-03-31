@@ -16,7 +16,7 @@ def create_task(title: str):
     if response.status_code == 201:
         print('Задача создана!')
     else:
-        print('Ошибка при создании задачи.')
+        print('Ошибка при создании задачи!')
 
 
 def make_task_done(task_id: int):
